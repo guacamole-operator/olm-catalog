@@ -1,0 +1,25 @@
+version: "3"
+
+env:
+  OPM_IMAGE: quay.io/operator-framework/opm:v1.26
+
+tasks:
+  generate:
+    desc: Generate catalog.
+    cmds:
+      - |
+        podman run \
+          --rm \
+          -v $(pwd)/catalog:/catalog \
+          --security-opt label=disable \
+          ${OPM_IMAGE} alpha render-template semver -o yaml /catalog/guacamole-operator/template.yaml > $(pwd)/catalog/guacamole-operator/catalog.yaml
+
+  validate:
+    desc: Validate catalog.
+    cmds:
+      - |
+        podman run \
+          --rm \
+          -v $(pwd)/catalog:/catalog \
+          --security-opt label=disable \
+          ${OPM_IMAGE} validate /catalog

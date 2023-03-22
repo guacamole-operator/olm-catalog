@@ -1,0 +1,40 @@
+name: build
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  OPERATOR_CATALOG_IMAGE_NAME: olm-catalog
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+  REGISTRY_USER: ${{ github.actor }}
+  REGISTRY_PASSWORD: ${{ github.token }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build catalog image
+        uses: redhat-actions/buildah-build@v2
+        id: build
+        with:
+          image: ${{ env.OPERATOR_CATALOG_IMAGE_NAME }}
+          tags: latest
+          containerfiles: |
+            ./catalog.Containerfile
+
+      - name: Push to GHCR
+        uses: redhat-actions/push-to-registry@v2
+        id: push
+        with:
+          image: ${{ steps.build.outputs.image }}
+          tags: latest
+          registry: ${{ env.IMAGE_REGISTRY }}
+          username: ${{ env.REGISTRY_USER }}
+          password: ${{ env.REGISTRY_PASSWORD }}
+
+      - name: Print push output
+        run: echo "${{ toJSON(steps.push.outputs) }}"
