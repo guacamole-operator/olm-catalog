@@ -2,4 +2,5 @@ Schema: olm.semver
 GenerateMajorChannels: true
 GenerateMinorChannels: false
 Candidate:
-  Bundles: []
+  Bundles:
+    - Image: ghcr.io/guacamole-operator/guacamole-operator-bundle:0.1.0
