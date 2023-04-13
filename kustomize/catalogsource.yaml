@@ -1,0 +1,12 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: guacamole-operator
+spec:
+  sourceType: grpc
+  image: ghcr.io/guacamole-operator/olm-catalog:latest
+  displayName: Guacamole Operator Catalog
+  publisher: Guacamole Operator
+  updateStrategy:
+    registryPoll:
+      interval: 10m
