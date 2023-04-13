@@ -1,0 +1,5 @@
+# Ignore everything except non-object .json and .yaml files
+**/*
+!*.json
+!*.yaml
+**/template.yaml
