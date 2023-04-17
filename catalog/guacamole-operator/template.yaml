@@ -4,3 +4,4 @@ GenerateMinorChannels: false
 Candidate:
   Bundles:
     - Image: ghcr.io/guacamole-operator/guacamole-operator-bundle:0.1.0
+    - Image: ghcr.io/guacamole-operator/guacamole-operator-bundle:0.1.1
