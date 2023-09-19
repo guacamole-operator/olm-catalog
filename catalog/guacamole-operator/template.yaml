@@ -9,3 +9,4 @@ Candidate:
     - Image: ghcr.io/guacamole-operator/guacamole-operator-bundle:0.1.3
     - Image: ghcr.io/guacamole-operator/guacamole-operator-bundle:0.1.4
     - Image: ghcr.io/guacamole-operator/guacamole-operator-bundle:0.2.0
+    - Image: ghcr.io/guacamole-operator/guacamole-operator-bundle:0.2.1
